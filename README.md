@@ -1,4 +1,4 @@
-# suidouble-sample-color
+# sui bot score
 
 Determine if Sui account is a bot or a human.
 
