@@ -2,7 +2,7 @@
 
 Determine if Sui account is a bot or a human.
 
-- [online](https://sui-bot-score.herokuapp.com/).
+- [online](https://sui-bot-score-04f61376a410.herokuapp.com/).
 
 Stack: Sui + suidouble + Vue. Ready to be deployed to Heroku
 
