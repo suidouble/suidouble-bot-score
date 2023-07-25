@@ -98,7 +98,7 @@ export default {
 	data() {
 		return {
             isLoading: true,
-            currentTab: 'scores',
+            currentTab: 'txbyhour',
 			calculated: {
 				series1: [
 					{
