@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <SignInWithSui :defaultChain="defaultChain" @wrongchain="onWrongChain" @suiMaster="onSuiMaster" ref="sui" :visible="false" />
+        <SignInWithSui :defaultChain="defaultChain" @suiMaster="onSuiMaster" ref="sui" :visible="false" />
 
         <q-banner class="bg-primary text-white" inline-actions style="margin-bottom: -16px;" v-if="!suiStatsAddress">
             <q-input type="text" label="Account Address &ndash; 0x.." v-model="addressToRun"/>
@@ -56,7 +56,7 @@ export default {
 		return {
             defaultChain: 'sui:mainnet',
 
-            addressToRun: '',
+            addressToRun: '0x9e40f545a7d69f1d59c84357a1cf33951bac6f60a9fb6b66e6669188beb4b3a7',
 
             suiStats: null,
             suiStatsAddress: null,

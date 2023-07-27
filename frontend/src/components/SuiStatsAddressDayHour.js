@@ -16,6 +16,9 @@ class SuiStatsAddressDayHour extends EventTarget {
 
         this._transactions = [];
         this._id = params.id || null;
+
+        this._stats = params.stats || null;
+        this._transactionsCount = params.transactionsCount || null;
     }
 
     get id() {
@@ -23,6 +26,10 @@ class SuiStatsAddressDayHour extends EventTarget {
     }
 
     get transactionsCount() {
+        if (this._transactionsCount) {
+            return this._transactionsCount;
+        }
+
         return this._transactions.length;
     }
 
@@ -37,6 +44,10 @@ class SuiStatsAddressDayHour extends EventTarget {
     }
 
     quantileDelay(p) {
+        if (this._stats && this._stats['quantileDelay_'+p]) {
+            return this._stats['quantileDelay_'+p];
+        }
+
         try {
             return ss.quantile(this.delaysAsArray.filter((i)=>{ return (i < 3600000); }), p);
         } catch (e) {

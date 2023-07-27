@@ -1,13 +1,13 @@
 <template>
 
-<div class="fixed-bottom">
+<div class="fixed-bottom" style="bottom: 50px;">
 <div class="row">
         <div class="col-12 col-md-4">
             <div style="height: 350px; width: 400px; margin: 0 auto; overflow: hidden; position: relative;">
             <ApexChartsAsync
                 type="radialBar"
                 :options="chartOptions"
-                :series="[valueToDisplay]" v-if="!isLoading"/>
+                :series="[valueToDisplay]"/>
 
 
                 <q-inner-loading :showing="true" style="margin-top: -25px;" v-if="loading">

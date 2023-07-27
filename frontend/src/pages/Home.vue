@@ -6,7 +6,9 @@
 
 
             <q-banner class="bg-primary text-white q-mr-md" inline-actions >
-                Determine if Sui account is a bot or a human. 
+                Determine if Sui account is a bot or a human. <br /><br />
+
+                No need to connect a wallet to check the score.<br />Just paste an address and press "Check"
             </q-banner>
 
             <ScoreDisplay :suiStatsAddress="suiStatsAddress" />

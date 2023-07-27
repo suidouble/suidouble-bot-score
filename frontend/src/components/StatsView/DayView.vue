@@ -4,7 +4,7 @@
     :subtitle="suiStatsAddressDay.title"
     >
 
-        <q-card>
+        <q-card @click="onClick">
             <q-tabs
             v-model="currentTab"
             dense
@@ -196,6 +196,9 @@ export default {
         StatsScore,
 	},
 	methods: {
+		onClick() {
+			console.error(this.suiStatsAddressDay.pack());
+		},
         onPanelTransition() {
             setTimeout(()=>{
                 this.updateChart1();

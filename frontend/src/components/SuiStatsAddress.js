@@ -1,5 +1,6 @@
 const SuiStatsAddressDay = require('./SuiStatsAddressDay.js');
 const ss = require('simple-statistics');
+const Pack = require('./pack/Pack.js');
 
 class SuiStatsAddress extends EventTarget {
     constructor(params = {}) {
@@ -27,6 +28,88 @@ class SuiStatsAddress extends EventTarget {
 
         this._transactions = [];
         this._mostRecentTransaction = null;
+    }
+
+    readyForTheMint() {
+
+        if (this._transactions.length > 10000) {
+            return true;
+        }
+
+        let ret = 0;
+        let i = 0;
+        let checkDate = new Date();
+
+        do {
+            const dayId = '' + checkDate.getUTCDate() + '-' + checkDate.getUTCMonth() + '-' + checkDate.getUTCFullYear();
+
+            if (this._daysIds[dayId] && this._daysIds[dayId].transactionsCount) {
+                ret++;
+            }
+            i++
+            checkDate.setUTCDate(checkDate.getUTCDate() - 1);
+        } while (i < 100);
+
+        if (ret > 3) {
+            return true;
+        }
+
+        return false;
+    }
+
+    static unpack(data, params) {
+        const binaryHeader = data.slice(0, 8);
+
+        const header = Pack.unpack(">II", binaryHeader);
+
+        const version = header[0];
+        const count = header[1];
+
+        console.log('ver', version);
+
+        const suiStatsAddress = new SuiStatsAddress(params);
+
+        let offsetNow = 8;
+        for (let i = 0; i < count; i++) {
+            // 16*24 + 32
+            const suiStatsAddressDay = SuiStatsAddressDay.unpack(data, offsetNow, {
+                suiMaster: params.suiMaster,
+                address: params.address,
+            });
+            console.error('suiStatsAddressDay', suiStatsAddressDay);
+            suiStatsAddress.fillDayGaps(suiStatsAddressDay.forTheDate);
+            const dayId = '' + suiStatsAddressDay.forTheDate.getUTCDate() + '-' + suiStatsAddressDay.forTheDate.getUTCMonth() + '-' + suiStatsAddressDay.forTheDate.getUTCFullYear();
+            suiStatsAddress._days.push(suiStatsAddressDay);
+            suiStatsAddress._daysIds[dayId] = suiStatsAddressDay;
+
+            offsetNow += (16*24+32);
+        }
+
+        return suiStatsAddress;
+    }
+
+    pack() {
+        let ret = [];
+        let daysRet = [];
+
+        let daysCount = 0;
+        let di = 0;
+        do {
+            if (this._days[di] && this._days[di].transactionsCount) {
+                daysRet = daysRet.concat(this._days[di].pack());
+                daysCount++;
+            }
+            di++;
+        } while (daysCount < 21 && this._days[di]);
+
+        const version = 1;
+        const binaryHeader = Pack.pack(">II", [version, daysCount]);
+        ret = ret.concat(binaryHeader);
+        ret = ret.concat(daysRet);
+
+        return ret;
+
+        // return ret;
     }
 
     getCurrentScore() {
