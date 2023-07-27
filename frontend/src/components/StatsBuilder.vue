@@ -56,7 +56,7 @@ export default {
 		return {
             defaultChain: 'sui:mainnet',
 
-            addressToRun: '0x9e40f545a7d69f1d59c84357a1cf33951bac6f60a9fb6b66e6669188beb4b3a7',
+            addressToRun: '',
 
             suiStats: null,
             suiStatsAddress: null,
