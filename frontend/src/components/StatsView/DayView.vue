@@ -197,7 +197,7 @@ export default {
 	},
 	methods: {
 		onClick() {
-			console.error(this.suiStatsAddressDay.pack());
+			// console.error(this.suiStatsAddressDay.pack());
 		},
         onPanelTransition() {
             setTimeout(()=>{

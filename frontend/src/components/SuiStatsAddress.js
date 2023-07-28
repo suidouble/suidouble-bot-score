@@ -116,6 +116,8 @@ class SuiStatsAddress extends EventTarget {
         let scores = [];
         let daysCount = 0;
         let di = 0;
+
+        let isFirstDay = true;
         do {
             if (this._days[di]) {
                 if (this._days[di].transactionsCount) {
@@ -123,11 +125,30 @@ class SuiStatsAddress extends EventTarget {
                     try { scores.push(this._days[di].getScoreManageableAnger()); } catch (e) { console.error(e); }
                     try { scores.push(this._days[di].getScoreAnger()); } catch (e) { console.error(e); }
                     try { scores.push(this._days[di].getScore24()); } catch (e) { console.error(e); }
+
+                    if (!isFirstDay) {
+                        // double the scores weight
+                        scores.push(scores[scores.length - 4]);
+                        scores.push(scores[scores.length - 4]);
+                        scores.push(scores[scores.length - 4]);
+                        scores.push(scores[scores.length - 4]);
+                    }
+
                     daysCount++;
+
+                    isFirstDay = false;
                 }
             }
             di++;
         } while (daysCount < 7 && this._days[di]);
+
+        if (scores.length > 8) {
+            // de-double score for the last day
+            scores.pop();
+            scores.pop();
+            scores.pop();
+            scores.pop();
+        }
 
         try {
             return ss.quantile(scores, 0.5);

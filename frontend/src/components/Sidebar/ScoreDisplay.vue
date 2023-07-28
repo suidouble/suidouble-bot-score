@@ -90,6 +90,10 @@
                 const metadata = packed;
                 const forAddress = this.suiStatsAddress.address;
 
+                if (forAddress != suiMaster.address) {
+                    this.$q.notify('Note: NFT will be minted for '+forAddress);
+                }
+
                 const contract = suiMaster.addPackage({ id: contractAddress, });
                 await contract.isOnChain();  
 
