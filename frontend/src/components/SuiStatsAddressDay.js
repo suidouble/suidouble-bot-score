@@ -284,13 +284,13 @@ class SuiStatsAddressDay extends EventTarget {
         for (const hour of hours) {
             const topDelay = hour.topDelay();
             if (topDelay && topDelay < 5 * 60000) {
-                s = s * 0.95;
+                s = s * 0.97;
             }
             if (topDelay && topDelay < 2 * 60000) {
-                s = s * 0.95;
+                s = s * 0.97;
             }
             if (topDelay && topDelay < 60000) {
-                s = s * 0.9;
+                s = s * 0.97;
             }
         }
 
