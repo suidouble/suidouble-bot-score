@@ -1,9 +1,9 @@
 <template>
 
-    <div class="fixed-bottom" style="bottom: 0px; z-index: 99999;">
+    <div class="fixed-bottom" style="bottom: 50px; z-index: 99999;">
     <div class="row" style="position: relative;">
             <div class="col-12 col-md-4">
-                <div style="text-align: center; position: relative; bottom: 60px;">
+                <div style="text-align: center; position: relative; bottom: 10px;">
 
                     <q-btn  color="primary" label="Mint as NFT" @click="doMint"  :outline="minted" />
 

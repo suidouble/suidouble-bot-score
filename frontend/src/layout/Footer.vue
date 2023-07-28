@@ -1,7 +1,7 @@
 <template>
 
   <!-- <q-footer reveal elevated> -->
-  <q-footer reveal>
+  <q-footer reveal style="">
     <q-toolbar>
       <q-toolbar-title>
 
