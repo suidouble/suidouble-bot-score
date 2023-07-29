@@ -84,10 +84,10 @@ class SuiStatsAddress extends EventTarget {
             });
             console.error('suiStatsAddressDay', suiStatsAddressDay);
 
-            if (suiStatsAddressDay.packedVersion !== 1) {
+            if (suiStatsAddressDay.packedVersion != 1 && suiStatsAddressDay.packedVersion != 2) {
                 suiStatsAddress.fillDayGaps(suiStatsAddressDay.forTheDate);
             }
-            
+
             const dayId = '' + suiStatsAddressDay.forTheDate.getUTCDate() + '-' + suiStatsAddressDay.forTheDate.getUTCMonth() + '-' + suiStatsAddressDay.forTheDate.getUTCFullYear();
             suiStatsAddress._days.push(suiStatsAddressDay);
             suiStatsAddress._daysIds[dayId] = suiStatsAddressDay;
