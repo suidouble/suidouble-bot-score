@@ -45,6 +45,7 @@ class SuiStatsAddressDay extends EventTarget {
 
         const date = (new Date());
         date.setTime(dayDate * 1000000 + dayDateLow);
+        
         params.forTheDate = date;
 
 
@@ -98,10 +99,10 @@ class SuiStatsAddressDay extends EventTarget {
     pack() {
         let ret = [];
 
-        const version = 2;
+        const version = 4;
         const dateTime = this.forTheDate.getTime();
         const dayDate = Math.floor(dateTime / 1000000);
-        const dayDateLow = (dateTime * 1000000) - dayDate;
+        const dayDateLow = dateTime - (dayDate * 1000000);
 
         const binaryHeader = Pack.pack(">IQI", [version, dayDate, dayDateLow]);
         ret = ret.concat(binaryHeader);

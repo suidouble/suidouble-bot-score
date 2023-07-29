@@ -84,7 +84,7 @@ class SuiStatsAddress extends EventTarget {
             });
             console.error('suiStatsAddressDay', suiStatsAddressDay);
 
-            if (suiStatsAddressDay.packedVersion != 1 && suiStatsAddressDay.packedVersion != 2) {
+            if (suiStatsAddressDay.packedVersion != 1 && suiStatsAddressDay.packedVersion != 2 && suiStatsAddressDay.packedVersion != 3) {
                 suiStatsAddress.fillDayGaps(suiStatsAddressDay.forTheDate);
             }
 
@@ -112,7 +112,7 @@ class SuiStatsAddress extends EventTarget {
             di++;
         } while (daysCount < 21 && this._days[di]);
 
-        const version = 2;
+        const version = 4;
         const binaryHeader = Pack.pack(">II", [version, daysCount]);
         ret = ret.concat(binaryHeader);
         ret = ret.concat(daysRet);

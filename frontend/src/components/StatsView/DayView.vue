@@ -1,7 +1,7 @@
 <template>
     <q-timeline-entry
     :title="'' + statsByDay + ' transactions'"
-    :subtitle="(suiStatsAddressDay.packedVersion != 1 && suiStatsAddressDay.packedVersion != 2) ? suiStatsAddressDay.title : 'Day'"
+    :subtitle="(suiStatsAddressDay.packedVersion != 1 && suiStatsAddressDay.packedVersion != 2 && suiStatsAddressDay.packedVersion != 3) ? suiStatsAddressDay.title : 'Day'"
     >
 
         <q-card @click="onClick">
