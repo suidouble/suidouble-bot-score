@@ -28,6 +28,11 @@ class SuiStatsAddress extends EventTarget {
 
         this._transactions = [];
         this._mostRecentTransaction = null;
+        this._packedVersion = params.packedVersion || null;
+    }
+
+    get packedVersion() {
+        return this._packedVersion;
     }
 
     readyForTheMint() {
@@ -67,6 +72,7 @@ class SuiStatsAddress extends EventTarget {
 
         console.log('ver', version);
 
+        params.packedVersion = version;
         const suiStatsAddress = new SuiStatsAddress(params);
 
         let offsetNow = 8;
@@ -77,7 +83,11 @@ class SuiStatsAddress extends EventTarget {
                 address: params.address,
             });
             console.error('suiStatsAddressDay', suiStatsAddressDay);
-            suiStatsAddress.fillDayGaps(suiStatsAddressDay.forTheDate);
+
+            if (suiStatsAddressDay.packedVersion !== 1) {
+                suiStatsAddress.fillDayGaps(suiStatsAddressDay.forTheDate);
+            }
+            
             const dayId = '' + suiStatsAddressDay.forTheDate.getUTCDate() + '-' + suiStatsAddressDay.forTheDate.getUTCMonth() + '-' + suiStatsAddressDay.forTheDate.getUTCFullYear();
             suiStatsAddress._days.push(suiStatsAddressDay);
             suiStatsAddress._daysIds[dayId] = suiStatsAddressDay;
@@ -102,7 +112,7 @@ class SuiStatsAddress extends EventTarget {
             di++;
         } while (daysCount < 21 && this._days[di]);
 
-        const version = 1;
+        const version = 2;
         const binaryHeader = Pack.pack(">II", [version, daysCount]);
         ret = ret.concat(binaryHeader);
         ret = ret.concat(daysRet);

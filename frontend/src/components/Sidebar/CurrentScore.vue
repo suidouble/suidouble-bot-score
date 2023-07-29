@@ -15,8 +15,6 @@
                 </q-inner-loading>
             </div>
         </div>
-        <div class="col-12 col-md-8">
-        </div>
 </div>
 </div>
 

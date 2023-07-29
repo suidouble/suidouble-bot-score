@@ -25,6 +25,12 @@ class SuiStatsAddressDay extends EventTarget {
         this.transactionsCount = params.transactionsCount || 0;
 
         this._scores = params.scores || null;
+
+        this._packedVersion = params.packedVersion || null;
+    }
+
+    get packedVersion() {
+        return this._packedVersion;
     }
 
     static unpack(data, offset, params = {}) {
@@ -55,6 +61,7 @@ class SuiStatsAddressDay extends EventTarget {
         console.error(scores);
 
         params.scores = scores;
+        params.packedVersion = version;
 
         let offsetNow = offset + 16 + 16;
 
@@ -67,10 +74,13 @@ class SuiStatsAddressDay extends EventTarget {
             console.log('hourUnpacked', hourUnpacked);
 
             const hourId = ''+i;
+
+            suiStatsAddressDay.transactionsCount += hourUnpacked[0];
             suiStatsAddressDay._hoursIds[hourId] = new SuiStatsAddressDayHour({
                     suiMaster: suiStatsAddressDay.suiMaster,
                     address: suiStatsAddressDay.address,
                     transactionsCount: hourUnpacked[0],
+                    id: hourId,
                     stats: {
                         'quantileDelay_0.1': hourUnpacked[1],
                         'quantileDelay_0.5': hourUnpacked[2],
@@ -88,9 +98,10 @@ class SuiStatsAddressDay extends EventTarget {
     pack() {
         let ret = [];
 
-        const version = 1;
-        const dayDate = Math.round(this.forTheDate.getTime() / 1000000);
-        const dayDateLow = this.forTheDate.getTime() - dayDate;
+        const version = 2;
+        const dateTime = this.forTheDate.getTime();
+        const dayDate = Math.floor(dateTime / 1000000);
+        const dayDateLow = (dateTime * 1000000) - dayDate;
 
         const binaryHeader = Pack.pack(">IQI", [version, dayDate, dayDateLow]);
         ret = ret.concat(binaryHeader);

@@ -5,7 +5,7 @@
             <div class="col-12 col-md-4">
                 <div style="text-align: center; position: relative; bottom: 10px;">
 
-                    <q-btn  color="primary" label="Mint as NFT" @click="doMint"  :outline="minted" />
+                    <q-btn  color="primary" label="Mint as NFT" @click="doMint"  :outline="minted" v-if="suiStatsAddress" />
 
                 </div>
                 <div style="height: 340px; width: 450px; margin: 0 auto; overflow: hidden; position: relative;">
@@ -38,6 +38,10 @@
                 type: Object,
                 default: null,
             },
+            score: {
+                type: Number,
+                default: null,
+            },
         },
         data() {
             return {
@@ -50,6 +54,12 @@
         },
         emits: [],
         watch: {
+            score: function() {
+                if (this.score) {
+                    this.currentScore = this.score;
+                    this.isLoading = false;
+                }
+            },
         },
         computed: {
         },
