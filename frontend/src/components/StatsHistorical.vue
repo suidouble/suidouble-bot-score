@@ -41,7 +41,8 @@ import { SignInWithSui } from 'vue-sui';
 // import DateHuman from 'shared/components/Helpers/DateHuman.vue';
 import DayView from './StatsView/DayView.vue';
 import EmptyDayView from './StatsView/EmptyDayView.vue';
-const SuiStatsAddress = require('./SuiStatsAddress.js');
+import SuiStatsAddress from './SuiStatsAddress.js';
+// const SuiStatsAddress = require('./SuiStatsAddress.js');
 
 export default {
 	name: 'StatsHistorical',

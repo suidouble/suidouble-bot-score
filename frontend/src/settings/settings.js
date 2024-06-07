@@ -11,7 +11,7 @@ export default {
 	quasar: {
 		config: {
 			dark: false,
-			basePath: (process.env.BUILD_PREFIXED ? ('/'+process.env.BUILD_PREFIXED) : ''),
+			basePath: '/',// (process.env.BUILD_PREFIXED ? ('/'+process.env.BUILD_PREFIXED) : ''),
 			brand: {
 				title: 'Sui Bot Score',
 				// https://quasar.dev/style/theme-builder
@@ -19,7 +19,8 @@ export default {
 				primary: '#4099ff',
 				secondary: '#5BACA2',
 				accent: '#9C27B0',
-				dark: '#1d1d1d',
+				dark: '#000000',
+				"dark-page": '#000000',
 
 				positive: '#21BA45',
 				negative: '#f44336',

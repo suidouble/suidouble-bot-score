@@ -1,6 +1,6 @@
-const ss = require('simple-statistics');
+import * as ss from 'simple-statistics';
 
-class SuiStatsAddressDayHour extends EventTarget {
+export default class SuiStatsAddressDayHour extends EventTarget {
     constructor(params = {}) {
         super();
 
@@ -77,4 +77,4 @@ class SuiStatsAddressDayHour extends EventTarget {
     }
 }
 
-module.exports = SuiStatsAddressDayHour;
+// module.exports = SuiStatsAddressDayHour;

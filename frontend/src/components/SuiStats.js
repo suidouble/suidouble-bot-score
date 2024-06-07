@@ -1,6 +1,6 @@
-const SuiStatsAddress = require('./SuiStatsAddress.js');
+import SuiStatsAddress from './SuiStatsAddress.js';
 
-class SuiStats extends EventTarget {
+export default class SuiStats extends EventTarget {
     constructor(params = {}) {
         super();
 
@@ -42,6 +42,4 @@ class SuiStats extends EventTarget {
             delete this._forAddress[address];
         }
     }
-}
-
-module.exports = SuiStats;
+};

@@ -1,6 +1,8 @@
-const jspack = require('./jspack.js');
+// const jspack = require('./jspack.js');
 
-class Pack {
+import jspack from './jspack.js';
+
+export default class Pack {
 	static pack(format, values) {
 		return jspack.Pack(format, values);
 	}
@@ -11,4 +13,4 @@ class Pack {
 }
 
 
-module.exports = Pack;
+// module.exports = Pack;

@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 // https://github.com/AndreasAntener/node-jspack
 /* !
  *  Copyright © 2008 Fair Oaks Labs, Inc.
@@ -316,4 +316,5 @@ function JSPack() {
     };
   }
   
-  module.exports = new JSPack();
+
+  export default (new JSPack());

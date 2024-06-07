@@ -46,7 +46,8 @@ import { SignInWithSui } from 'vue-sui';
 // import DateHuman from 'shared/components/Helpers/DateHuman.vue';
 import DayView from './StatsView/DayView.vue';
 import EmptyDayView from './StatsView/EmptyDayView.vue';
-const SuiStats = require('./SuiStats.js');
+import SuiStats from './SuiStats.js';
+// const SuiStats = require('./SuiStats.js');
 
 export default {
 	name: 'StatsBuilder',

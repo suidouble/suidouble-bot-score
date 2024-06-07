@@ -17,7 +17,7 @@
 </template>
 <script>
 // import ColorWave from '../components/ColorWave.vue';
-import Logo from './Logo';
+import Logo from './Logo.vue';
 // import Auth from 'shared/components/Auth';
 import DarkChanger from 'shared/components/LayoutElements/DarkChanger.vue';
 // import Notifications from 'shared/components/LayoutElements/Notifications.vue';

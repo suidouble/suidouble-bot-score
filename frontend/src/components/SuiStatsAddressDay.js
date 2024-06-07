@@ -1,8 +1,11 @@
-const SuiStatsAddressDayHour = require('./SuiStatsAddressDayHour.js');
-const ss = require('simple-statistics');
-const Pack = require('./pack/Pack.js');
+// const SuiStatsAddressDayHour = require('./SuiStatsAddressDayHour.js');
+import SuiStatsAddressDayHour from './SuiStatsAddressDayHour.js';
+// const ss = require('simple-statistics');
+import * as ss from 'simple-statistics';
+import Pack from './pack/Pack.js';
+// const Pack = require('./pack/Pack.js');
 
-class SuiStatsAddressDay extends EventTarget {
+export default class SuiStatsAddressDay extends EventTarget {
     constructor(params = {}) {
         super();
 
@@ -321,4 +324,4 @@ class SuiStatsAddressDay extends EventTarget {
     }
 }
 
-module.exports = SuiStatsAddressDay;
+// module.exports = SuiStatsAddressDay;
